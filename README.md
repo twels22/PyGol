@@ -1,4 +1,4 @@
-#README
+#README#
 
 requirements:
 +pygame:
