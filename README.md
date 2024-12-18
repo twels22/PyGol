@@ -10,5 +10,6 @@ keys:
 + MMB(middle mouse button): grid movement
 + E: switch delete\create mode
 + CTRL+Q: clear grid
++ SPACE: pause\unpause game
 
 by twels
