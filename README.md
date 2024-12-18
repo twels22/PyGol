@@ -1,10 +1,10 @@
-###**README**
+#README
 
 requirements:
-|pygame
-+ pip install pygame
-|python
-+ just install python (python.org)
++pygame:
+  + pip install pygame
++python:
+  + just install python (python.org)
 
 keys:
 + LMB(left mouse button): create or delete cell
