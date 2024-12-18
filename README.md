@@ -1,10 +1,10 @@
-#README#
+_**README**_
 
-requirements:
-+pygame:
+_requirements:_
++pygame🥇:
   + pip install pygame
-+python:
-  + just install python (python.org)
++python🥈:
+  + just install python ([python](python.org))
 
 keys:
 + LMB(left mouse button): create or delete cell
@@ -13,3 +13,4 @@ keys:
 + E: switch delete\create mode
 + CTRL+Q: clear grid
 
+by twels
