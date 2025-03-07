@@ -11,7 +11,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 800, 600
 CELL_SIZE = 10
-FPS = 30
+fps = 120
 
 # cls
 WHITE = (240, 240, 240)
@@ -24,8 +24,8 @@ LIGHT_BLUE = (150, 200, 255)
 GRID_BG_COLOR = (138, 127, 142)
 
 #gradietn
-START_COLOR = (235, 235, 0)
-END_COLOR = (102, 102, 255)
+START_COLOR =(164, 164, 15)
+END_COLOR = (2, 119, 79)
 
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -143,15 +143,6 @@ def resize_grid(new_cell_size):
     grid = [[0 for _ in range(cols)] for _ in range(rows)]
     age_grid = [[0 for _ in range(cols)] for _ in range(rows)]
 
-def draw_gradient_background():
-    """yellow->blue gradient background"""
-    for y in range(HEIGHT):
-
-        r = int(START_COLOR[0] + (END_COLOR[0] - START_COLOR[0]) * y / HEIGHT)
-        g = int(START_COLOR[1] + (END_COLOR[1] - START_COLOR[1]) * y / HEIGHT)
-        b = int(START_COLOR[2] + (END_COLOR[2] - START_COLOR[2]) * y / HEIGHT)
-        color = (r, g, b)
-        pygame.draw.line(screen, color, (0, y), (WIDTH, y))
 
 def main():
     global is_running, scroll_offset, mousedown, remove_mode, grid, age_grid
@@ -160,10 +151,10 @@ def main():
     paused_font = pygame.font.Font(None, 48)
     rule_text = "B3/S23"
     dim_alpha = 128
+    n=pygame.transform.scale(pygame.image.load("noise.png"),(800,600)).convert_alpha()
 
     while True:
-
-        draw_gradient_background()
+        screen.blit(n,(0,0))
 
 
         draw_grid()
@@ -191,8 +182,8 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:  #lmb
                     mousedown = True
-                elif event.button == 2:  # mmb
-                    scroll_offset = [0, 0]
+                # elif event.button == 2:  # mmb
+                #     scroll_offset = [0, 0]
                 elif event.button == 3:  # rmb
                     input_rules_window()
 
@@ -228,17 +219,20 @@ def main():
             update_grid()
 
         #rules text
-        text_surface = font.render(f"rules: B{''.join(map(str, birth))}/S{''.join(map(str, survive))}", True, BLACK)
+        pygame.draw.rect(screen, WHITE, (5,5,300,50),border_radius=10)
+        text_surface = font.render(f"RULE: B{''.join(map(str, birth))}/S{''.join(map(str, survive))}", True, BLACK)
+        text_surfacefps = font.render(f"FPS: {int(clock.get_fps())}", True, BLACK)
         screen.blit(text_surface, (10, 10))
+        screen.blit(text_surfacefps, (200, 10))
 
         #pause text
         if not is_running:
             paused_text = paused_font.render("pause", True, BLACK)
-            screen.blit(paused_text, (WIDTH - 220, HEIGHT - 60))
+            screen.blit(paused_text, (WIDTH - 210, HEIGHT - 60))
 
         #
         pygame.display.flip()
-        clock.tick(FPS)
+        clock.tick(fps)
 
 #main
 if __name__ == "__main__":
